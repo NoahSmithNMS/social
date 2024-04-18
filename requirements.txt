@@ -1,0 +1,6 @@
+Django==5.0.4
+djangorestframework==3.15.1
+psycopg2==2.9.9
+
+# move to dev
+flake8==7.0.0
