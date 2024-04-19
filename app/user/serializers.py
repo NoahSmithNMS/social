@@ -31,9 +31,12 @@ class UserSerializer(serializers.ModelSerializer):
         """Create and return a new user with encrypted password"""
         return get_user_model().objects.create_user(**validated_data)
 
+    # override serializer update method to update user
     def update(self, instance, validated_data):
         """Update a user, setting the password correctly and return it."""
         password = validated_data.pop('password', None)
+        # super() calls the parent class method and
+        # changes only the parts we want
         user = super().update(instance, validated_data)
 
         if password:
@@ -41,6 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+
 
 class AuthTokenSerializer(serializers.Serializer):
     """Serializer for the user authentication token."""
