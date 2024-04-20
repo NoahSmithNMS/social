@@ -5,13 +5,32 @@ from rest_framework import generics, authentication, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 
+from django.http import HttpResponse
+from django.shortcuts import render
+
 from user.serializers import (
     UserSerializer,
     AuthTokenSerializer,
 )
 
 
-# CreateAPIView hangles HTTP POST request
+def home(request):
+    return render(request, 'authentication/index.html')
+
+
+def signup(request):
+    return render(request, 'authentication/signup.html')
+
+
+def login(request):
+    return render(request, 'authentication/login.html')
+
+
+def logout(request):
+    pass
+
+
+# CreateAPIView handles HTTP POST request
 class CreateUserView(generics.CreateAPIView):
     """Create a new user in the system."""
     serializer_class = UserSerializer
