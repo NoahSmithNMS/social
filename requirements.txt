@@ -3,5 +3,5 @@ djangorestframework==3.15.1
 psycopg2==2.9.9
 drf-spectacular==0.27.2
 
-# move to dev
+python-dotenv==1.0.1
 flake8==7.0.0
