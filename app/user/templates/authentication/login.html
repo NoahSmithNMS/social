@@ -6,8 +6,8 @@
   </head>
   <body>
     <br class="container">
-    <h1>Signup</h1>
-    <form method="post" action="{% url 'user:token' %}">
+    <h1>Login</h1>
+    <form method="post" action="{% url 'user:login' %}">
         {% csrf_token %}
         <label for="email">Email:</label>
         <input
@@ -19,53 +19,11 @@
         />
     </br>
         <label for="password">Password:</label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          placeholder="Create Password"
-          required
+        <input type="text" id="password" name="password" placeholder="Create Password" required
         />
     </br>
         <button type="submit">Login</button>
       </form>
     </div>
   </body>
-  <script>
-    window.onload = function() {
-      document.querySelector('form').addEventListener('submit', function(event) {
-        // Prevent the form from being submitted normally
-        event.preventDefault();
-
-        // Collect the form data
-        const formData = new FormData(event.target);
-
-         // Convert the form data to JSON
-         const jsonData = {};
-            for (const [key, value] of formData.entries()) {
-                if (['email','password',].includes(key)) {
-                    jsonData[key] = value;
-                }
-            }
-
-        // Send the JSON data in a POST request
-        fetch("{% url 'user:token' %}", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // Include the CSRF token in the request header
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-          },
-          body: JSON.stringify(jsonData),
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch((error) => {
-                console.error('Error:', error);
-                // Display the error message as an alert
-                alert('There was an error with login: ' + error);
-            });
-      });
-    }
-  </script>
 </html>

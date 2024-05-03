@@ -9,11 +9,10 @@ from user import views
 app_name = 'user'
 
 urlpatterns = [
-    path('create/', views.CreateUserView.as_view(), name='create'),
-    path('token/', views.CreateAuthTokenView.as_view(), name='token'),
-    path('me/', views.ManageUserView.as_view(), name='me'),
     path('', views.home, name='home'),
-    path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
+    #path('register/', views.register, name='register'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logoutt'),
+    path('current/', views.UserView.as_view(), name='current'),
 ]
